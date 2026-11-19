@@ -1,0 +1,34 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dex_data_pg
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dex
+      POSTGRES_PASSWORD: dex
+      POSTGRES_DB: dex_data
+    ports:
+      - "5433:5432"
+    volumes:
+      - dex_pgdata:/var/lib/postgresql/data
+    command:
+      # Ingest is write-heavy and bulk-loaded; tune for throughput over latency.
+      - postgres
+      - -c
+      - max_connections=200
+      - -c
+      - shared_buffers=512MB
+      - -c
+      - work_mem=32MB
+      - -c
+      - maintenance_work_mem=512MB
+      - -c
+      - synchronous_commit=off
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dex -d dex_data"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  dex_pgdata:

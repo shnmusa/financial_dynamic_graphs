@@ -1,0 +1,13 @@
+# Temporal Graph Network on dex_data swaps
+torch>=2.4
+torch-geometric>=2.6        # TGNMemory, LastNeighborLoader, TemporalData
+numpy>=1.26
+pandas>=2.2
+pyarrow>=16                 # parquet cache of model_swaps extracts
+scikit-learn>=1.5           # AP / AUC metrics
+psycopg[binary,pool]>=3.2   # read model_swaps / model_trades from dex_data Postgres
+python-dotenv>=1.0.1
+tqdm>=4.66
+matplotlib>=3.8
+ipykernel>=6.29
+pytest>=8.3

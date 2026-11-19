@@ -1,0 +1,34 @@
+# environments and secrets
+.venv/
+venv/
+../dex_data/.env
+.cache/
+
+# python / tooling
+__pycache__/
+*.pyc
+.pytest_cache/
+.idea/
+.DS_Store
+
+# large data and model artefacts (rebuilt by the pipeline)
+data/processed/
+*.pt
+*.parquet
+*.npy
+*.npz
+
+# LaTeX build files
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+
+paper
+runs
+analysis/figures
+analysis/results
